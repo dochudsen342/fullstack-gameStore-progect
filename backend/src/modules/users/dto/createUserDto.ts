@@ -1,6 +1,6 @@
-export type CreateUserDto = {
-    email: string,
-    password: string,
-    name: string,
-    img?: File
+export class CreateUserDto {
+    readonly email!: string
+    readonly password!: string
+    readonly nickname!: string
+    readonly img?: string
 }

@@ -5,13 +5,75 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
+const prisma_service_1 = require("../../prisma/prisma.service");
+const users_service_1 = require("../users/users.service");
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
+    prisma;
+    userService;
+    jwtService;
+    constructor(prisma, userService, jwtService) {
+        this.prisma = prisma;
+        this.userService = userService;
+        this.jwtService = jwtService;
+    }
+    async login(userDto) {
+        const user = await this.validateUser(userDto);
+        if (user) {
+            const token = await this.generateToken(user);
+            const { password, ...userWithotPassword } = user;
+            return {
+                token,
+                user: userWithotPassword
+            };
+        }
+    }
+    async registration(userDto) {
+        const candidate = await this.prisma.user.findUnique({ where: { email: userDto.email } });
+        if (candidate) {
+            throw new common_1.HttpException('Пользователь с таким email уже существует', common_1.HttpStatus.BAD_REQUEST);
+        }
+        const hashPassword = await bcrypt_1.default.hash(userDto.password, 5);
+        const user = await this.prisma.user.create({
+            data: { ...userDto, password: hashPassword }
+        });
+        const { password, ...userWithoutPassword } = user;
+        const token = await this.generateToken(user);
+        return {
+            token: token,
+            user: userWithoutPassword
+        };
+    }
+    async generateToken(user) {
+        const payload = { id: user.id, email: user.email, name: user?.name };
+        return this.jwtService.sign(payload);
+    }
+    async validateUser(userDto) {
+        const user = await this.userService.getUserByEmail(userDto.email);
+        if (!user) {
+            throw new common_1.UnauthorizedException({ message: "Пользователя с таким email не существует" });
+        }
+        const passwordsIsEquals = await bcrypt_1.default.compare(userDto.password, user.password);
+        if (!passwordsIsEquals) {
+            throw new common_1.UnauthorizedException({ message: 'Неверный пароль' });
+        }
+        return user;
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService, users_service_1.UsersService,
+        jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

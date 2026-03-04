@@ -1,7 +1,9 @@
-export default function Auth() {
+import React from 'react';
+
+const Page = () => {
     return (
-        <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-            <span>Hello World auth</span>
-        </div>
+        <div>authPage</div>
     );
-}
+};
+
+export default Page;

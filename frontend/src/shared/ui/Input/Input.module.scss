@@ -1,0 +1,29 @@
+.InputWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.Label {
+    color: #555;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.Input {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.Input:focus {
+    border-color: #0066cc;
+}
+
+.Input::placeholder {
+    color: #999;
+    font-size: 14px;
+}

@@ -9,10 +9,12 @@ export class UsersService {
 
     async createUser(dto: CreateUserDto) {
         const user = this.prisma.user.create({
-            data: dto
+            data: { ...dto, img: null }
         })
 
+        return user
     }
+
 
     async getUserByEmail(email: string) {
         const user = this.prisma.user.findUnique({ where: { email } })
@@ -22,4 +24,5 @@ export class UsersService {
 
         return user
     }
+
 }
