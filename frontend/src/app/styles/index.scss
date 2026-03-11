@@ -1,6 +1,16 @@
 @use "./reset.scss";
 
-.body {
+body {
     font-size: 30px;
     background-color: rgb(223, 223, 223);
+    min-height: 100vh;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: red;
+    height: 50px;
 }

@@ -29,7 +29,7 @@ export class AuthController {
     @Post('/registration')
     async registration(@Res({ passthrough: true }) res: Response, @Body() userDto: CreateUserDto) {
         const registratedClient = await this.authService.registration(userDto)
-        res.cookie('token', registratedClient, {
+        res.cookie('token', registratedClient.token, {
             httpOnly: true,
             maxAge: 40 * 60 * 1000,
             sameSite: 'strict',
@@ -38,6 +38,9 @@ export class AuthController {
 
         return {
             message: "Регистрация прошла успешно",
+            id: registratedClient.userId
         }
     }
+
+
 }

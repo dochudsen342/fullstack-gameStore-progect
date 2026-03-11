@@ -17,21 +17,21 @@ export type UserSumAggregateOutputType = {
 export type UserMinAggregateOutputType = {
     id: number | null;
     email: string | null;
-    name: string | null;
+    nickname: string | null;
     password: string | null;
     img: string | null;
 };
 export type UserMaxAggregateOutputType = {
     id: number | null;
     email: string | null;
-    name: string | null;
+    nickname: string | null;
     password: string | null;
     img: string | null;
 };
 export type UserCountAggregateOutputType = {
     id: number;
     email: number;
-    name: number;
+    nickname: number;
     password: number;
     img: number;
     _all: number;
@@ -45,21 +45,21 @@ export type UserSumAggregateInputType = {
 export type UserMinAggregateInputType = {
     id?: true;
     email?: true;
-    name?: true;
+    nickname?: true;
     password?: true;
     img?: true;
 };
 export type UserMaxAggregateInputType = {
     id?: true;
     email?: true;
-    name?: true;
+    nickname?: true;
     password?: true;
     img?: true;
 };
 export type UserCountAggregateInputType = {
     id?: true;
     email?: true;
-    name?: true;
+    nickname?: true;
     password?: true;
     img?: true;
     _all?: true;
@@ -95,7 +95,7 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type UserGroupByOutputType = {
     id: number;
     email: string;
-    name: string;
+    nickname: string;
     password: string;
     img: string | null;
     _count: UserCountAggregateOutputType | null;
@@ -113,31 +113,31 @@ export type UserWhereInput = {
     NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
     id?: Prisma.IntFilter<"User"> | number;
     email?: Prisma.StringFilter<"User"> | string;
-    name?: Prisma.StringFilter<"User"> | string;
+    nickname?: Prisma.StringFilter<"User"> | string;
     password?: Prisma.StringFilter<"User"> | string;
     img?: Prisma.StringNullableFilter<"User"> | string | null;
 };
 export type UserOrderByWithRelationInput = {
     id?: Prisma.SortOrder;
     email?: Prisma.SortOrder;
-    name?: Prisma.SortOrder;
+    nickname?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     img?: Prisma.SortOrderInput | Prisma.SortOrder;
 };
 export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number;
     email?: string;
+    nickname?: string;
     AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
     OR?: Prisma.UserWhereInput[];
     NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[];
-    name?: Prisma.StringFilter<"User"> | string;
     password?: Prisma.StringFilter<"User"> | string;
     img?: Prisma.StringNullableFilter<"User"> | string | null;
-}, "id" | "email">;
+}, "id" | "email" | "nickname">;
 export type UserOrderByWithAggregationInput = {
     id?: Prisma.SortOrder;
     email?: Prisma.SortOrder;
-    name?: Prisma.SortOrder;
+    nickname?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     img?: Prisma.SortOrderInput | Prisma.SortOrder;
     _count?: Prisma.UserCountOrderByAggregateInput;
@@ -152,60 +152,60 @@ export type UserScalarWhereWithAggregatesInput = {
     NOT?: Prisma.UserScalarWhereWithAggregatesInput | Prisma.UserScalarWhereWithAggregatesInput[];
     id?: Prisma.IntWithAggregatesFilter<"User"> | number;
     email?: Prisma.StringWithAggregatesFilter<"User"> | string;
-    name?: Prisma.StringWithAggregatesFilter<"User"> | string;
+    nickname?: Prisma.StringWithAggregatesFilter<"User"> | string;
     password?: Prisma.StringWithAggregatesFilter<"User"> | string;
     img?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null;
 };
 export type UserCreateInput = {
     email: string;
-    name: string;
+    nickname: string;
     password: string;
     img?: string | null;
 };
 export type UserUncheckedCreateInput = {
     id?: number;
     email: string;
-    name: string;
+    nickname: string;
     password: string;
     img?: string | null;
 };
 export type UserUpdateInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
-    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    nickname?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     img?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type UserUncheckedUpdateInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     email?: Prisma.StringFieldUpdateOperationsInput | string;
-    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    nickname?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     img?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type UserCreateManyInput = {
     id?: number;
     email: string;
-    name: string;
+    nickname: string;
     password: string;
     img?: string | null;
 };
 export type UserUpdateManyMutationInput = {
     email?: Prisma.StringFieldUpdateOperationsInput | string;
-    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    nickname?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     img?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type UserUncheckedUpdateManyInput = {
     id?: Prisma.IntFieldUpdateOperationsInput | number;
     email?: Prisma.StringFieldUpdateOperationsInput | string;
-    name?: Prisma.StringFieldUpdateOperationsInput | string;
+    nickname?: Prisma.StringFieldUpdateOperationsInput | string;
     password?: Prisma.StringFieldUpdateOperationsInput | string;
     img?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
 };
 export type UserCountOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     email?: Prisma.SortOrder;
-    name?: Prisma.SortOrder;
+    nickname?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     img?: Prisma.SortOrder;
 };
@@ -215,14 +215,14 @@ export type UserAvgOrderByAggregateInput = {
 export type UserMaxOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     email?: Prisma.SortOrder;
-    name?: Prisma.SortOrder;
+    nickname?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     img?: Prisma.SortOrder;
 };
 export type UserMinOrderByAggregateInput = {
     id?: Prisma.SortOrder;
     email?: Prisma.SortOrder;
-    name?: Prisma.SortOrder;
+    nickname?: Prisma.SortOrder;
     password?: Prisma.SortOrder;
     img?: Prisma.SortOrder;
 };
@@ -245,39 +245,39 @@ export type IntFieldUpdateOperationsInput = {
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     email?: boolean;
-    name?: boolean;
+    nickname?: boolean;
     password?: boolean;
     img?: boolean;
 }, ExtArgs["result"]["user"]>;
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     email?: boolean;
-    name?: boolean;
+    nickname?: boolean;
     password?: boolean;
     img?: boolean;
 }, ExtArgs["result"]["user"]>;
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     id?: boolean;
     email?: boolean;
-    name?: boolean;
+    nickname?: boolean;
     password?: boolean;
     img?: boolean;
 }, ExtArgs["result"]["user"]>;
 export type UserSelectScalar = {
     id?: boolean;
     email?: boolean;
-    name?: boolean;
+    nickname?: boolean;
     password?: boolean;
     img?: boolean;
 };
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "name" | "password" | "img", ExtArgs["result"]["user"]>;
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "nickname" | "password" | "img", ExtArgs["result"]["user"]>;
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "User";
     objects: {};
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         id: number;
         email: string;
-        name: string;
+        nickname: string;
         password: string;
         img: string | null;
     }, ExtArgs["result"]["user"]>;
@@ -339,7 +339,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface UserFieldRefs {
     readonly id: Prisma.FieldRef<"User", 'Int'>;
     readonly email: Prisma.FieldRef<"User", 'String'>;
-    readonly name: Prisma.FieldRef<"User", 'String'>;
+    readonly nickname: Prisma.FieldRef<"User", 'String'>;
     readonly password: Prisma.FieldRef<"User", 'String'>;
     readonly img: Prisma.FieldRef<"User", 'String'>;
 }

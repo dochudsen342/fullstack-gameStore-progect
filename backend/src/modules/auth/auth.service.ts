@@ -30,7 +30,7 @@ export class AuthService {
         const candidate = await this.userService.getUserByEmail(userDto.email)
 
         if (candidate) {
-            throw new HttpException('Пользователь с таким email уже существует', HttpStatus.BAD_REQUEST)
+            throw new HttpException('Этот email уже зарегистрирован!', HttpStatus.BAD_REQUEST)
         }
 
 
@@ -39,10 +39,15 @@ export class AuthService {
         const user = await this.userService.createUser({
             ...userDto, password: hashPassword
         })
-        return await this.generateToken(user)
-
-
+        const token = await this.generateToken(user)
+        console.log(user.id)
+        return {
+            token,
+            userId: user.id
+        }
     }
+
+
 
     private async generateToken(user: User) {
         const payload = { id: user.id, email: user.email, name: user.nickname }

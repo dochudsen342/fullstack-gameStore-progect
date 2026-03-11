@@ -19,6 +19,12 @@
     transition: border-color 0.2s ease;
 }
 
+.ErrorMessage {
+    font-size: 13;
+    color: red;
+    font-weight: 600;
+}
+
 .Input:focus {
     border-color: #0066cc;
 }
@@ -26,4 +32,8 @@
 .Input::placeholder {
     color: #999;
     font-size: 14px;
+}
+
+.InputError {
+    border-color: red;
 }

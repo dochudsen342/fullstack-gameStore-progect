@@ -45,7 +45,7 @@ let AuthController = class AuthController {
         });
         return {
             message: "Регистрация прошла успешно",
-            user: registratedClient.user
+            id: registratedClient.userId
         };
     }
 };

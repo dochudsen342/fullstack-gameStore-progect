@@ -4,7 +4,7 @@ exports.CreateUserDto = void 0;
 class CreateUserDto {
     email;
     password;
-    name;
+    nickname;
     img;
 }
 exports.CreateUserDto = CreateUserDto;

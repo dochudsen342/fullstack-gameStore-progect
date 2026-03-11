@@ -4,17 +4,17 @@ export declare class UsersService {
     private prisma;
     constructor(prisma: PrismaService);
     createUser(dto: CreateUserDto): Promise<{
-        name: string;
         id: number;
         password: string;
         email: string;
+        nickname: string;
         img: string | null;
     }>;
     getUserByEmail(email: string): Promise<{
-        name: string;
         id: number;
         password: string;
         email: string;
+        nickname: string;
         img: string | null;
     } | null>;
 }

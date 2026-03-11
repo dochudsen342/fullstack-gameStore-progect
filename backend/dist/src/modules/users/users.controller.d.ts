@@ -4,10 +4,10 @@ export declare class UsersController {
     private usersService;
     constructor(usersService: UsersService);
     createUser(dto: CreateUserDto): Promise<{
-        name: string;
         id: number;
         password: string;
         email: string;
+        nickname: string;
         img: string | null;
     }>;
 }

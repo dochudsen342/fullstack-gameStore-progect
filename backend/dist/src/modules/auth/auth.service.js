@@ -14,16 +14,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("../../prisma/prisma.service");
 const users_service_1 = require("../users/users.service");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
-    prisma;
     userService;
     jwtService;
-    constructor(prisma, userService, jwtService) {
-        this.prisma = prisma;
+    constructor(userService, jwtService) {
         this.userService = userService;
         this.jwtService = jwtService;
     }
@@ -39,23 +36,23 @@ let AuthService = class AuthService {
         }
     }
     async registration(userDto) {
-        const candidate = await this.prisma.user.findUnique({ where: { email: userDto.email } });
+        const candidate = await this.userService.getUserByEmail(userDto.email);
         if (candidate) {
-            throw new common_1.HttpException('Пользователь с таким email уже существует', common_1.HttpStatus.BAD_REQUEST);
+            throw new common_1.HttpException('Этот email уже зарегистрирован!', common_1.HttpStatus.BAD_REQUEST);
         }
         const hashPassword = await bcrypt_1.default.hash(userDto.password, 5);
-        const user = await this.prisma.user.create({
-            data: { ...userDto, password: hashPassword }
+        const user = await this.userService.createUser({
+            ...userDto, password: hashPassword
         });
-        const { password, ...userWithoutPassword } = user;
         const token = await this.generateToken(user);
+        console.log(user.id);
         return {
-            token: token,
-            user: userWithoutPassword
+            token,
+            userId: user.id
         };
     }
     async generateToken(user) {
-        const payload = { id: user.id, email: user.email, name: user?.name };
+        const payload = { id: user.id, email: user.email, name: user.nickname };
         return this.jwtService.sign(payload);
     }
     async validateUser(userDto) {
@@ -73,7 +70,7 @@ let AuthService = class AuthService {
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService, users_service_1.UsersService,
+    __metadata("design:paramtypes", [users_service_1.UsersService,
         jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

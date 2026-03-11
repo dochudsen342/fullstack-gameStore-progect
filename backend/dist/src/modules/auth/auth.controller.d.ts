@@ -8,20 +8,15 @@ export declare class AuthController {
     login(res: Response, userDto: LoginUserDto): Promise<{
         message: string;
         user: {
-            name: string;
             id: number;
             email: string;
+            nickname: string;
             img: string | null;
         } | undefined;
     }>;
     registration(res: Response, userDto: CreateUserDto): Promise<{
         message: string;
-        user: {
-            name: string;
-            id: number;
-            email: string;
-            img: string | null;
-        };
+        id: number;
     }>;
 }
 //# sourceMappingURL=auth.controller.d.ts.map

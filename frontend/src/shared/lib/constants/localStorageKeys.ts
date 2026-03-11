@@ -1,0 +1,1 @@
+export const USER_ID_LOCALSTORAGE_KEY = 'user-id'
