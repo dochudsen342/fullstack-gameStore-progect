@@ -5,7 +5,7 @@ import styles from './Navbar.module.scss'
 import Button from '@/src/shared/ui/Button/Button'
 import { AppLink } from '@/src/shared/ui/Link/AppLink'
 import { Input } from '@/src/shared/ui/Input/Input'
-import { getIsMounted, getUserAuthData, useUserStore } from '@/src/entities/User'
+import { getUserAuthData, useUserStore } from '@/src/entities/User'
 import Dropdown from '@/src/shared/ui/Dropdown/Dropdown'
 import { getUserLogout } from '@/src/entities/User/model/selectors/getUserLogout'
 
@@ -16,17 +16,14 @@ interface NavbarProps {
 const Navbar = ({ className }: NavbarProps) => {
 
     const userAuthData = useUserStore(getUserAuthData)
-    const _isMounted = useUserStore(getIsMounted)
     const logout = useUserStore(getUserLogout)
     const dropdownTrigger =
-        (<AppLink href={'/'} className={styles.loginButton} >
+        (<AppLink href={''} className={styles.loginButton} >
             <span>👤</span>
             Профиль
         </AppLink>)
 
-    if (!_isMounted) {
-        return null
-    }
+
 
     return (
         <header className={styles.header}>
@@ -62,7 +59,7 @@ const Navbar = ({ className }: NavbarProps) => {
 
                 {userAuthData ? <Dropdown triger={dropdownTrigger} items={
                     [
-                        { content: 'Профиль', href: '/1', },
+                        { content: 'Профиль', href: '/profile', },
                         { content: 'Заказы', href: '/2' },
                         { content: 'Выход', href: '3', onClick: logout },
 

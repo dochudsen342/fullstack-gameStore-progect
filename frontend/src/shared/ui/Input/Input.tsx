@@ -58,6 +58,7 @@ export const Input = memo((props: InputProps) => {
                 onChange={onChangeHandler}
                 placeholder={placeholder}
                 disabled={disabled}
+                value={value}
                 className={classNames(cl.Input, { [cl.InputError]: Boolean(inputErrorMessage) }, [className])}
                 {...othersProps}
             />

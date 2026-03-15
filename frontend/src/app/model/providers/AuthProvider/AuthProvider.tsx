@@ -1,6 +1,6 @@
 "use client"
 import { useUserStore } from "@/src/entities/User"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 function AuthProvider({ children }: any) {
     const userInitAuthData = useUserStore(state => state.initAuthData)
@@ -8,6 +8,7 @@ function AuthProvider({ children }: any) {
     useEffect(() => {
         userInitAuthData()
     }, [])
+
     return (
         <>
             {children}

@@ -1,11 +1,16 @@
 import { Navbar } from "@/src/widgets/Navbar";
-import Dropdown from "../shared/ui/Dropdown/Dropdown";
+import { Slider } from "../shared/ui/Slider/Slider";
+import { HomePage } from '@/src/pages/HomePage'
+import Text from "../shared/ui/Text/Text";
+
+
 
 
 export default function Home() {
+
   return (
     <>
-      <Navbar />
+      <HomePage />
     </>
   );
 }

@@ -1,8 +1,6 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { User, UserSchema } from "../types/user";
-import { createJSONStorage, persist } from "zustand/middleware";
-import { use } from "react";
 import { USER_ID_LOCALSTORAGE_KEY } from "@/src/shared/lib/constants/localStorageKeys";
 
 type UserStoreActions = {

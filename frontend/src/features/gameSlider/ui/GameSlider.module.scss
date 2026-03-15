@@ -1,0 +1,25 @@
+.Slider {
+    margin-top: 40px;
+}
+
+.SliderWrapper {
+    background-color: rgba(131, 130, 130, 0.5);
+    box-shadow: -1px 2px 23px 18px rgba(88, 128, 158, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    overflow: hidden;
+    width: 1800px;
+    margin-inline: auto;
+    margin-top: 30px;
+}
+
+.SliderTitle {
+    margin-top: 110px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-inline: auto;
+    font-size: 42px;
+    color: rgb(236, 232, 232);
+    background-color: rgba(78, 78, 78, 0.952);
+    width: fit-content;
+}

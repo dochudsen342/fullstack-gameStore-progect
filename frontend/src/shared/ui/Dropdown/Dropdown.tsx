@@ -3,12 +3,13 @@
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react'
 import { Fragment, ReactNode } from 'react'
 import cl from './Dropdows.module.scss'
+import { AppLink } from '../Link/AppLink'
 
 export type DropdownItem = {
     unavailable?: boolean
     content: ReactNode
     onClick?: () => void
-    href?: string // сделать ссылку обязательным
+    href: string // сделать ссылку обязательным
 }
 
 type DropdownProps = {
@@ -40,12 +41,13 @@ export default function Dropdown({ className, items, triger }: DropdownProps) {
 
                             {items.map(item => (<MenuItem key={item.href}>
                                 {({ focus }) => (
-                                    <button
+                                    <AppLink
+                                        href={item.href}
                                         onClick={item?.onClick}
                                         className={cl['dropdown-item']}
                                     >
                                         {item.content}
-                                    </button>
+                                    </AppLink>
                                 )}
                             </MenuItem>))}
 
