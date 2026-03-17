@@ -8,14 +8,14 @@ import { Profile } from '../../types/profile'
 
 interface ProfileCardProps {
     className?: string,
-    onChangeName?: (nickname: string) => void
+    onChangeFirstName?: (nickname: string) => void
     onChangeEmail?: (email: string) => void
     onChageNickname?: (name: string) => void
     onChangeBirthday?: (birthday: string) => void,
     profileData: Profile
 }
 
-const ProfileCard = ({ className }: ProfileCardProps) => {
+const ProfileCard = ({ className, profileData }: ProfileCardProps) => {
 
 
     return (
@@ -25,10 +25,10 @@ const ProfileCard = ({ className }: ProfileCardProps) => {
                 <div className={cl['profile-card']}>
                     <Text className={cl.profileCardTitle} title='Настройки профиля' />
                     <form className={cl['form-section']}>
-                        <Input value='Дмитрий' type='text' labelText='Имя' />
-                        <Input labelText='Электронная почта' type='email' value="gexevuni@koletter.com" />
-                        <Input labelText='Никнейм' type="text" value="Dqizi" />
-                        <Input labelText='Дата рождения' type="text" value="05.03.2018" />
+                        <Input type='text' labelText='Имя' value={profileData.userName} />
+                        <Input labelText='Электронная почта' type='email' value={profileData.email} />
+                        <Input labelText='Никнейм' type="text" value={profileData.Nickname} />
+                        <Input labelText='Дата рождения' type="text" value={profileData.birthDay} />
                     </form>
 
                     <div className={cl['gender-section']}>

@@ -1,10 +1,10 @@
 import React from 'react';
-import RegisterForm from '@/src/features/auth/register/ui/RegisterForm/RegisterForm';
+import LoginPage from '@/src/pages/auth/loginPage/ui/LoginPage';
 
 const Page = () => {
     return (
         <>
-            LoginPage
+            <LoginPage />
         </>
     );
 };

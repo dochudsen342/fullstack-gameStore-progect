@@ -12,20 +12,17 @@ import { getRegisterErrorMessage, getRegisterFnc, getRegisterIsLoading } from '.
 import { getUserAuthData, useUserStore } from '@/src/entities/User'
 import { redirect } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { RegisterSchema, RegisterUser } from '../../model/types/registerSchema'
 
 interface RegisterFormProps {
     className?: string,
 }
 
-type RegisterForm = {
-    nickname: string,
-    email: string,
-    password: string,
-}
+
 
 const RegisterForm = ({ className }: RegisterFormProps) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<RegisterForm>()
+    const { register, handleSubmit, formState: { errors } } = useForm<RegisterUser>()
     const userAuthData = useUserStore(getUserAuthData)
     const isLoading = useRegisterStore(getRegisterIsLoading)
     const errorMessage = useRegisterStore(getRegisterErrorMessage) as string
@@ -33,7 +30,7 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
     const registerFnc = useRegisterStore(getRegisterFnc)
 
 
-    const onRegisterSubmit: SubmitHandler<RegisterForm> = (data) => {
+    const onRegisterSubmit: SubmitHandler<RegisterUser> = (data) => {
         registerFnc(data)
     }
 
@@ -73,7 +70,7 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
                 </form>
 
                 <div className={cl['login-link']}>
-                    <AppLink className={cl.registerLink} href="/auth/login">Уже есть аккаунт? Войти</AppLink>
+                    <AppLink className={cl.registerLink} href="/login">Уже есть аккаунт? Войти</AppLink>
                 </div>
             </div>
         </div>
@@ -81,3 +78,4 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
 }
 
 export default RegisterForm
+

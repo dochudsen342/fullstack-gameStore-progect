@@ -1,31 +1,32 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
-import { RegisterSchema, RegisterUser } from "../types/registerSchema";
 import axios, { AxiosError } from "axios";
 import { useUserStore } from "@/src/entities/User/model/store/userStore";
 import { User } from "@/src/entities/User/model/types/user";
 import { AxiosErrorMessageTypes } from "@/src/shared/types/AxiosErrorTypes";
+import { LoginUser, LoginUserSchema } from "../types/login";
 
-type registerStoreActions = {
-    register: (registerData: RegisterUser) => void
+type loginStoreActions = {
+    login: (loginData: LoginUser) => void
 }
 
-export type RegisterStore = RegisterSchema & registerStoreActions
-const initialState: RegisterSchema = {
+export type LoginStore = LoginUserSchema & loginStoreActions
+const initialState: LoginUserSchema = {
     isLoading: false,
-    error: ''
+    error: undefined,
 }
-export const useRegisterStore = create<RegisterStore>()(immer((set, get) => ({
+export const useLoginStore = create<LoginStore>()(immer((set, get) => ({
     ...initialState,
-    register: async (registerData) => {
+    login: async (loginData) => {
         const userStore = useUserStore.getState()
 
         set((state) => { state.isLoading = true })
         try {
-            const response = await axios.post<User>('http://localhost:8000/auth/registration', registerData)
+            const response = await axios.post<User>('http://localhost:8000/auth/login', loginData)
             if (response.status >= 200 && response.status < 300) {
                 set((state) => {
                     state.isLoading = false
+                    state.error = undefined
                     userStore.setAuthData(response.data)
                 })
             }

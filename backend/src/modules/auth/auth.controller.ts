@@ -19,10 +19,10 @@ export class AuthController {
             sameSite: 'strict',
             secure: process.env.NODE_ENV === 'production',
         })
-
+        console.log(loginUser?.user)
         return {
             message: 'Вход успешен',
-            user: loginUser?.user
+            id: loginUser?.user.id
         }
     }
 

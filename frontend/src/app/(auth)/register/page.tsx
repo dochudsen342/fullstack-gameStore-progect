@@ -1,9 +1,9 @@
 import React from 'react';
-import RegisterForm from '@/src/features/auth/register/ui/RegisterForm/RegisterForm';
+import RegisterPage from '@/src/pages/auth/registerPage/ui/RegisterPage';
 
 const Page = () => {
     return (
-        <RegisterForm />
+        <RegisterPage />
     );
 };
 

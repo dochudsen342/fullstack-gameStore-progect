@@ -1,5 +1,5 @@
 import RegisterForm from "./register/ui/RegisterForm/RegisterForm";
 
-export default {
+export {
     RegisterForm
 }

@@ -61,12 +61,12 @@ const Navbar = ({ className }: NavbarProps) => {
                     [
                         { content: 'Профиль', href: '/profile', },
                         { content: 'Заказы', href: '/2' },
-                        { content: 'Выход', href: '3', onClick: logout },
+                        { content: 'Выход', href: '/', onClick: logout },
 
                     ]
                 } /> :
 
-                    <AppLink href={'/register'} className={styles.loginButton} >
+                    <AppLink href={'/login'} className={styles.loginButton} >
                         <span>👤</span>
                         Войти
                     </AppLink>}

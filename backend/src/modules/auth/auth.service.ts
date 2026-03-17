@@ -40,7 +40,6 @@ export class AuthService {
             ...userDto, password: hashPassword
         })
         const token = await this.generateToken(user)
-        console.log(user.id)
         return {
             token,
             userId: user.id

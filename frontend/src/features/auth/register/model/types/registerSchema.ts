@@ -6,7 +6,6 @@ export interface RegisterUser {
 }
 
 export interface RegisterSchema {
-    registerData: RegisterUser,
     isLoading: boolean,
     error: unknown
 }
