@@ -10,5 +10,8 @@ export declare class UsersController {
         nickname: string;
         img: string | null;
     }>;
+    test(): Promise<{
+        message: string;
+    }>;
 }
 //# sourceMappingURL=users.controller.d.ts.map

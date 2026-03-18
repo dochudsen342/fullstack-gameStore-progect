@@ -8,11 +8,12 @@ import cookieParser from "cookie-parser";
 async function start() {
     const PORT = process.env.PORT || 8000;
     const app = await NestFactory.create(AppModule);
+    app.use(cookieParser())
+
     app.enableCors({
         origin: 'http://localhost:3000',
-        Credential: true,
+        credentials: true,
     })
-    app.use(cookieParser())
     await app.listen(PORT, () => console.log(`Server is start ${PORT}`));
 }
 

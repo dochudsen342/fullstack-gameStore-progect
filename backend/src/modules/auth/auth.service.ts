@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from '../users/users.service';
 import bcrypt from "bcrypt";
 import { CreateUserDto } from '../users/dto/createUserDto';
@@ -16,15 +15,14 @@ export class AuthService {
 
     async login(userDto: LoginUserDto) {
         const user = await this.validateUser(userDto)
-        if (user) {
-            const token = await this.generateToken(user)
-            const { password, ...userWithotPassword } = user
-            return {
-                token,
-                user: userWithotPassword
-            }
+        const token = await this.generateToken(user)
+        const { password, ...userWithotPassword } = user
+        return {
+            token,
+            user: userWithotPassword
         }
     }
+
 
     async registration(userDto: CreateUserDto) {
         const candidate = await this.userService.getUserByEmail(userDto.email)

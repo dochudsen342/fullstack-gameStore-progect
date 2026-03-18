@@ -22,15 +22,14 @@ let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
     }
-    async login(res, userDto) {
+    async login(userDto, res, req) {
         const loginUser = await this.authService.login(userDto);
         res.cookie('token', loginUser?.token, {
             httpOnly: true,
-            maxAge: 40 * 60 * 1000,
+            secure: false,
             sameSite: 'strict',
-            secure: process.env.NODE_ENV === 'production',
+            maxAge: 3600000
         });
-        console.log(loginUser?.user);
         return {
             message: 'Вход успешен',
             id: loginUser?.user.id
@@ -53,10 +52,11 @@ let AuthController = class AuthController {
 exports.AuthController = AuthController;
 __decorate([
     (0, common_1.Post)('/login'),
-    __param(0, (0, common_1.Res)({ passthrough: true })),
-    __param(1, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Res)({ passthrough: true })),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, loginUserDto_1.LoginUserDto]),
+    __metadata("design:paramtypes", [loginUserDto_1.LoginUserDto, Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([

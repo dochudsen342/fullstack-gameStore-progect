@@ -8,8 +8,9 @@ import { PrismaModule } from 'src/prisma/prisma.module';
 @Module({
   controllers: [AuthController],
   providers: [AuthService],
+  exports: [JwtModule, AuthService],
   imports: [UsersModule, PrismaModule, JwtModule.register({
-    secret: process.env.PRIVATE_KEY || 'SECRET',
+    secret: 'SECRET',
     signOptions: {
       expiresIn: '10m'
     }

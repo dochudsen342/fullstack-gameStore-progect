@@ -16,6 +16,7 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const createUserDto_1 = require("./dto/createUserDto");
+const jwt_auth_guards_1 = require("../guards/jwt-auth.guards");
 let UsersController = class UsersController {
     usersService;
     constructor(usersService) {
@@ -23,6 +24,11 @@ let UsersController = class UsersController {
     }
     async createUser(dto) {
         return this.usersService.createUser(dto);
+    }
+    async test() {
+        return {
+            message: 'Запрос пройден'
+        };
     }
 };
 exports.UsersController = UsersController;
@@ -33,6 +39,13 @@ __decorate([
     __metadata("design:paramtypes", [createUserDto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "createUser", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guards_1.JwtAuthGuard),
+    (0, common_1.Post)('/JwtGuardTest'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "test", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

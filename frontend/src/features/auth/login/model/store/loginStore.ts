@@ -5,6 +5,7 @@ import { useUserStore } from "@/src/entities/User/model/store/userStore";
 import { User } from "@/src/entities/User/model/types/user";
 import { AxiosErrorMessageTypes } from "@/src/shared/types/AxiosErrorTypes";
 import { LoginUser, LoginUserSchema } from "../types/login";
+import { $api } from "@/src/shared/api/api";
 
 type loginStoreActions = {
     login: (loginData: LoginUser) => void
@@ -22,7 +23,7 @@ export const useLoginStore = create<LoginStore>()(immer((set, get) => ({
 
         set((state) => { state.isLoading = true })
         try {
-            const response = await axios.post<User>('http://localhost:8000/auth/login', loginData)
+            const response = await $api.post<User>('/auth/login', loginData)
             if (response.status >= 200 && response.status < 300) {
                 set((state) => {
                     state.isLoading = false

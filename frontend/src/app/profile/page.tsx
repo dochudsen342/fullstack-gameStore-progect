@@ -1,6 +1,7 @@
 import React from 'react'
 import cl from './page.module.scss'
 import ProfilePage from '@/src/pages/ProfilePage/ui/ProfilePage'
+import { RequireAuthProvider } from '../model/providers/RequireAuthProvider/RequireAuthProvider'
 
 interface pageProps {
     className?: string,
@@ -9,7 +10,9 @@ interface pageProps {
 const page = ({ className }: pageProps) => {
 
     return (
-        <ProfilePage />
+        <RequireAuthProvider>
+            <ProfilePage />
+        </RequireAuthProvider>
     )
 }
 

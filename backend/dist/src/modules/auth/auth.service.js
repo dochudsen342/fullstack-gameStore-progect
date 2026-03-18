@@ -26,14 +26,12 @@ let AuthService = class AuthService {
     }
     async login(userDto) {
         const user = await this.validateUser(userDto);
-        if (user) {
-            const token = await this.generateToken(user);
-            const { password, ...userWithotPassword } = user;
-            return {
-                token,
-                user: userWithotPassword
-            };
-        }
+        const token = await this.generateToken(user);
+        const { password, ...userWithotPassword } = user;
+        return {
+            token,
+            user: userWithotPassword
+        };
     }
     async registration(userDto) {
         const candidate = await this.userService.getUserByEmail(userDto.email);
@@ -45,7 +43,6 @@ let AuthService = class AuthService {
             ...userDto, password: hashPassword
         });
         const token = await this.generateToken(user);
-        console.log(user.id);
         return {
             token,
             userId: user.id

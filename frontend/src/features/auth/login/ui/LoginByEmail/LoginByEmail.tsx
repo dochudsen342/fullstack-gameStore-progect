@@ -42,6 +42,7 @@ const LoginByEmail = ({ className }: RegisterFormProps) => {
             <Spiner />
         </div>
     }
+    
     if (!isLoading && userAuthData) {
         redirect('/')
     }
