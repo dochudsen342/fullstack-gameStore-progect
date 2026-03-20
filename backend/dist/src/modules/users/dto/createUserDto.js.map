@@ -1,1 +1,1 @@
-{"version":3,"file":"createUserDto.js","sourceRoot":"","sources":["../../../../../src/modules/users/dto/createUserDto.ts"],"names":[],"mappings":";;;AAAA,MAAa,aAAa;IACb,KAAK,CAAS;IACd,QAAQ,CAAS;IACjB,QAAQ,CAAS;IACjB,GAAG,CAAS;CACxB;AALD,sCAKC"}
+{"version":3,"file":"createUserDto.js","sourceRoot":"","sources":["../../../../../src/modules/users/dto/createUserDto.ts"],"names":[],"mappings":";;;AAEA,MAAa,aAAa;IACb,KAAK,CAAS;IACd,QAAQ,CAAS;IACjB,OAAO,CAAmB;CACtC;AAJD,sCAIC"}

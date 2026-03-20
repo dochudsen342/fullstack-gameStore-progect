@@ -3,7 +3,7 @@ import React from 'react'
 import cl from './ProfileCard.module.scss'
 import { Navbar } from '@/src/widgets/Navbar'
 import Text from '@/src/shared/ui/Text/Text'
-import { Input } from '@/src/shared/ui/Input/Input'
+import { Input } from '@/src/shared/ui/Input/ui/Input'
 import { Profile } from '../../types/profile'
 
 interface ProfileCardProps {

@@ -3,4 +3,5 @@ export { Prisma };
 export * as $Enums from './enums';
 export * from './enums';
 export type User = Prisma.UserModel;
+export type Profile = Prisma.ProfileModel;
 //# sourceMappingURL=browser.d.ts.map

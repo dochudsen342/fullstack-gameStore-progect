@@ -3,7 +3,7 @@ import React from 'react'
 import cl from './LoginByEmail.module.scss'
 import classNames from 'classnames'
 import Text from '@/src/shared/ui/Text/Text'
-import { Input } from '@/src/shared/ui/Input/Input'
+import { Input } from '@/src/shared/ui/Input/ui/Input'
 import Button from '@/src/shared/ui/Button/Button'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AppLink } from '@/src/shared/ui/Link/AppLink'
@@ -13,6 +13,7 @@ import { LoginUser } from '../../model/types/login'
 import { Spiner } from '@/src/shared/ui/Spiner/Spiner'
 import { getUserAuthData, useUserStore } from '@/src/entities/User'
 import { redirect } from 'next/navigation'
+import { FormInput } from '@/src/shared/ui/Input/ui/FormInput'
 
 interface RegisterFormProps {
     className?: string,
@@ -42,7 +43,7 @@ const LoginByEmail = ({ className }: RegisterFormProps) => {
             <Spiner />
         </div>
     }
-    
+
     if (!isLoading && userAuthData) {
         redirect('/')
     }
@@ -51,8 +52,8 @@ const LoginByEmail = ({ className }: RegisterFormProps) => {
             <div className={cl['register-card']}>
                 <Text size='sizeM' title='Войти' />
                 <form onSubmit={handleSubmit(onLoginSubmit)} className={cl['register-form']}>
-                    <Input {...register('email')} onChange={() => { }} ErrorText={errors.email?.message} id='email' htmlFor='email' labelText='Email' type='email' />
-                    <Input {...register('password')} onChange={() => { }} id='password' htmlFor='password' labelText='Пароль' type="password" />
+                    <FormInput {...register('email')} ErrorText={errors.email?.message} id='email' htmlFor='email' labelText='Email' type='email' />
+                    <FormInput {...register('password')} id='password' htmlFor='password' labelText='Пароль' type="password" />
                     <Button className={cl['submit-button']}>
                         Войти
                     </Button>

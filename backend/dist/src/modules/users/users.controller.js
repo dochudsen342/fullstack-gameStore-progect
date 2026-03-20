@@ -30,6 +30,13 @@ let UsersController = class UsersController {
             message: 'Запрос пройден'
         };
     }
+    async profile(dto) {
+        const profile = await this.usersService.findProfileByUserId(dto);
+        return {
+            message: 'Profile find',
+            profile
+        };
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -46,6 +53,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "test", null);
+__decorate([
+    (0, common_1.Post)('/profileTest'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "profile", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

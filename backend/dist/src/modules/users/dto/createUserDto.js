@@ -4,8 +4,7 @@ exports.CreateUserDto = void 0;
 class CreateUserDto {
     email;
     password;
-    nickname;
-    img;
+    profile;
 }
 exports.CreateUserDto = CreateUserDto;
 //# sourceMappingURL=createUserDto.js.map

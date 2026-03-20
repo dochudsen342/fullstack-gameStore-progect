@@ -11,8 +11,6 @@ export declare class AuthService {
         user: {
             id: number;
             email: string;
-            nickname: string;
-            img: string | null;
         };
     }>;
     registration(userDto: CreateUserDto): Promise<{

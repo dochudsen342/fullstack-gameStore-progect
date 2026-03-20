@@ -17,8 +17,20 @@ datasource db {
 model User { 
   id    Int     @id @default(autoincrement()) 
   email String  @unique
-  nickname String 
   password String
-  img String?
+  profile Profile?
+
+  @@map("Users")
 } 
 
+model Profile{
+  id Int @id @default(autoincrement())
+  userId Int @unique
+  nickname String @unique
+  avatar String?
+  birthday String?
+  user User @relation(fields:[userId],references:[id])
+
+
+  @@map("profiles")
+}

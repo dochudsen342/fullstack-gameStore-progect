@@ -7,11 +7,25 @@ export declare class UsersController {
         id: number;
         password: string;
         email: string;
-        nickname: string;
-        img: string | null;
     }>;
     test(): Promise<{
         message: string;
+    }>;
+    profile(dto: {
+        userId: number;
+    }): Promise<{
+        message: string;
+        profile: {
+            profile: {
+                id: number;
+                nickname: string;
+                avatar: string | null;
+                birthday: string | null;
+                userId: number;
+            } | null;
+            id: number;
+            email: string;
+        } | null;
     }>;
 }
 //# sourceMappingURL=users.controller.d.ts.map

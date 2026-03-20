@@ -14,6 +14,7 @@ async function start() {
         origin: 'http://localhost:3000',
         credentials: true,
     })
+    // console.log('NODE_ENV:', process.env.DEFAULT_AVATAR)
     await app.listen(PORT, () => console.log(`Server is start ${PORT}`));
 }
 

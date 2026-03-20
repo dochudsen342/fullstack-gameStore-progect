@@ -22,7 +22,13 @@ export const useRegisterStore = create<RegisterStore>()(immer((set, get) => ({
 
         set((state) => { state.isLoading = true })
         try {
-            const response = await axios.post<User>('http://localhost:8000/auth/registration', registerData)
+
+            const response = await axios.post<User>('http://localhost:8000/auth/registration', {
+                ...registerData,
+                profile: {
+                    nickname: registerData.nickname
+                }
+            })
             if (response.status >= 200 && response.status < 300) {
                 set((state) => {
                     state.isLoading = false

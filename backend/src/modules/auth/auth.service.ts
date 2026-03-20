@@ -26,7 +26,6 @@ export class AuthService {
 
     async registration(userDto: CreateUserDto) {
         const candidate = await this.userService.getUserByEmail(userDto.email)
-
         if (candidate) {
             throw new HttpException('Этот email уже зарегистрирован!', HttpStatus.BAD_REQUEST)
         }
@@ -37,6 +36,7 @@ export class AuthService {
         const user = await this.userService.createUser({
             ...userDto, password: hashPassword
         })
+
         const token = await this.generateToken(user)
         return {
             token,
@@ -47,7 +47,7 @@ export class AuthService {
 
 
     private async generateToken(user: User) {
-        const payload = { id: user.id, email: user.email, name: user.nickname }
+        const payload = { id: user.id, email: user.email }
 
         return this.jwtService.sign(payload)
     }

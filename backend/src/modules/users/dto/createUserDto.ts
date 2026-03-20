@@ -1,6 +1,7 @@
+import { CreateProfileDto } from "src/modules/Profile/dto/CreateProfileDto/CreateProfileDto"
+
 export class CreateUserDto {
     readonly email!: string
     readonly password!: string
-    readonly nickname!: string
-    readonly img?: string
+    readonly profile!: CreateProfileDto
 }

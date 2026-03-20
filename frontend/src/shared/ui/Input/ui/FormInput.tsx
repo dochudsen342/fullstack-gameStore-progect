@@ -1,16 +1,15 @@
 
-import { ChangeEvent, InputHTMLAttributes, memo, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, InputHTMLAttributes, memo, useEffect, useState } from 'react'
 import cl from './Input.module.scss'
 import classNames from 'classnames'
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
 
-interface InputProps extends HTMLInputProps {
+interface FormInputProps extends HTMLInputProps {
     className?: string
     value?: string | number
     type?: string
     placeholder?: string
-    onChange?: (value: string) => void
     disabled?: boolean,
     htmlFor?: string,
     labelText?: string,
@@ -19,12 +18,11 @@ interface InputProps extends HTMLInputProps {
 
 
 
-export const Input = memo((props: InputProps) => {
+export const FormInput = memo((props: FormInputProps) => {
     const {
         className,
         type = 'text',
         value,
-        onChange,
         placeholder,
         autoFocus,
         disabled,
@@ -45,7 +43,6 @@ export const Input = memo((props: InputProps) => {
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setInputErrorMessage('')
-        onChange?.(e.target.value)
     }
 
     return (

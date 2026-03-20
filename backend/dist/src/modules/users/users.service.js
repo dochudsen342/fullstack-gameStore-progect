@@ -18,10 +18,29 @@ let UsersService = class UsersService {
         this.prisma = prisma;
     }
     async createUser(dto) {
+        console.log(dto);
         const user = this.prisma.user.create({
-            data: { ...dto, img: null }
+            data: {
+                email: dto.email,
+                password: dto.password,
+                profile: {
+                    create: {
+                        nickname: dto.profile.nickname,
+                        avatar: dto.profile.avatar ?? process.env.DEFAULT_AVATAR,
+                        birthday: dto.profile.birthday ?? process.env.DEFAULT_BIRTHDAY
+                    }
+                }
+            }
         });
         return user;
+    }
+    async findProfileByUserId(dto) {
+        const profile = await this.prisma.user.findUnique({ where: { id: dto.userId }, include: { profile: true } });
+        if (!profile) {
+            return null;
+        }
+        const { password, ...profileWithoutPassword } = profile;
+        return profileWithoutPassword;
     }
     async getUserByEmail(email) {
         const user = this.prisma.user.findUnique({ where: { email } });

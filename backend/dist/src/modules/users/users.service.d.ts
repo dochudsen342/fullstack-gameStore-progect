@@ -7,15 +7,24 @@ export declare class UsersService {
         id: number;
         password: string;
         email: string;
-        nickname: string;
-        img: string | null;
     }>;
+    findProfileByUserId(dto: {
+        userId: number;
+    }): Promise<{
+        profile: {
+            id: number;
+            nickname: string;
+            avatar: string | null;
+            birthday: string | null;
+            userId: number;
+        } | null;
+        id: number;
+        email: string;
+    } | null>;
     getUserByEmail(email: string): Promise<{
         id: number;
         password: string;
         email: string;
-        nickname: string;
-        img: string | null;
     } | null>;
 }
 //# sourceMappingURL=users.service.d.ts.map
