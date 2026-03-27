@@ -1,19 +1,22 @@
 'use client'
+
 import React from 'react'
-import cl from './RegisterForm.module.scss'
 import classNames from 'classnames'
 import Text from '@/src/shared/ui/Text/Text'
-import { Input } from '@/src/shared/ui/Input/ui/Input'
 import Button from '@/src/shared/ui/Button/Button'
 import { AppLink } from '@/src/shared/ui/Link/AppLink'
 import { useRegisterStore } from '../../model/store/registerStore'
 import { Spiner } from '@/src/shared/ui/Spiner/Spiner'
-import { getRegisterErrorMessage, getRegisterFnc, getRegisterIsLoading } from '../../model/selectors/getRegiterSelectors'
+import { getFormFieldsServerErrors, getRegisterFnc, getRegisterIsLoading, getValidateNickname } from '../../model/selectors/getRegiterSelectors'
 import { getUserAuthData, useUserStore } from '@/src/entities/User'
 import { redirect } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { RegisterSchema, RegisterUser } from '../../model/types/registerSchema'
+import { RegisterUser } from '../../model/types/registerSchema'
 import { FormInput } from '@/src/shared/ui/Input/ui/FormInput'
+import { useDebounce } from '@/src/shared/lib/hooks/useDebounce'
+
+import cl from './RegisterForm.module.scss'
+
 
 interface RegisterFormProps {
     className?: string,
@@ -21,16 +24,20 @@ interface RegisterFormProps {
 
 
 
+
 const RegisterForm = ({ className }: RegisterFormProps) => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<RegisterUser>()
+    const { register, handleSubmit, formState: { errors }, getValues } = useForm<RegisterUser>()
     const userAuthData = useUserStore(getUserAuthData)
     const isLoading = useRegisterStore(getRegisterIsLoading)
-    const errorMessage = useRegisterStore(getRegisterErrorMessage) as string
+    const errorMessage = useRegisterStore(getFormFieldsServerErrors)
 
     const registerFnc = useRegisterStore(getRegisterFnc)
-
-
+    const validateNickname = useDebounce(useRegisterStore(getValidateNickname), 800)
+    const onValidateNickname = () => {
+        const state = getValues()
+        validateNickname(state.nickname)
+    }
     const onRegisterSubmit: SubmitHandler<RegisterUser> = (data) => {
         registerFnc(data)
     }
@@ -53,14 +60,15 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
                 <Text size='sizeM' title='Регистрация' />
                 <form onSubmit={handleSubmit(onRegisterSubmit)} className={cl['register-form']}>
                     <FormInput {...register('nickname', {
-                        onChange: () => { console.log(1) }
-                    })} id='nickname' htmlFor='nickname' placeholder='Ваш никнейм' labelText='Никнейм' />
+                        onChange: () => { onValidateNickname() },
+
+                    })} ErrorText={errorMessage.nicknameError} id='nickname' htmlFor='nickname' placeholder='Ваш никнейм' labelText='Никнейм' />
                     <FormInput {...register('email', {
                         required: {
                             value: true,
                             message: 'Email обязателен для заполнения!'
                         }
-                    })} ErrorText={errors.email?.message || errorMessage} id='email' htmlFor='email' placeholder='example@mail.com' labelText='Email' type='email' />
+                    })} ErrorText={errors.email?.message || errorMessage.emailError} id='email' htmlFor='email' placeholder='example@mail.com' labelText='Email' type='email' />
                     <FormInput {...register('password', {
                         required: {
                             value: true,

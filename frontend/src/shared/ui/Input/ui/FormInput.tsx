@@ -3,7 +3,7 @@ import { ChangeEvent, InputHTMLAttributes, memo, useEffect, useState } from 'rea
 import cl from './Input.module.scss'
 import classNames from 'classnames'
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value'>
 
 interface FormInputProps extends HTMLInputProps {
     className?: string

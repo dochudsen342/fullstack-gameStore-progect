@@ -5,7 +5,16 @@ export interface RegisterUser {
     nickname: string,
 }
 
+export interface ValidateNicknameSchema {
+    message?: string
+}
+
+interface FormFieldsServerError {
+    emailError?: string,//я уверен,что это string
+    nicknameError?: string,//я уверен,что это string
+}
+
 export interface RegisterSchema {
     isLoading: boolean,
-    error: unknown
+    formError: FormFieldsServerError
 }

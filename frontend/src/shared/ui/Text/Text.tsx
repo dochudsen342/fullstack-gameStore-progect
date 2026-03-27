@@ -20,6 +20,7 @@ type TextProps = {
 
 const Text = ({ className, size = 'sizeM', title, text }: TextProps) => {
 
+
     const mods = {
         [cl[size]]: true,
     }
@@ -29,7 +30,6 @@ const Text = ({ className, size = 'sizeM', title, text }: TextProps) => {
         <div className={classNames(cl.Text, mods, className)}>
             {title && <HeaderTag>{title}</HeaderTag>}
             {text && <p>{text}</p>}
-
         </div>
     )
 }
