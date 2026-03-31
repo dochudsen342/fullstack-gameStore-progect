@@ -34,10 +34,12 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
 
     const registerFnc = useRegisterStore(getRegisterFnc)
     const validateNickname = useDebounce(useRegisterStore(getValidateNickname), 800)
+
     const onValidateNickname = () => {
         const state = getValues()
         validateNickname(state.nickname)
     }
+
     const onRegisterSubmit: SubmitHandler<RegisterUser> = (data) => {
         registerFnc(data)
     }
@@ -67,13 +69,22 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
                         required: {
                             value: true,
                             message: 'Email обязателен для заполнения!'
-                        }
+                        },
+
                     })} ErrorText={errors.email?.message || errorMessage.emailError} id='email' htmlFor='email' placeholder='example@mail.com' labelText='Email' type='email' />
                     <FormInput {...register('password', {
                         required: {
                             value: true,
                             message: 'Password обязателен для заполнения!'
-                        }
+                        },
+                        minLength: {
+                            value: 5,
+                            message: 'Пароль слишком короткий!'
+                        },
+                        maxLength: {
+                            value: 16,
+                            message: 'Пароль слишком длинный!'
+                        },
                     })} id='password' ErrorText={errors.password?.message} htmlFor='password' placeholder="Придумайте пароль" labelText='Пароль' type="password" />
                     <Button className={cl['submit-button']}>
                         Зарегистрироваться

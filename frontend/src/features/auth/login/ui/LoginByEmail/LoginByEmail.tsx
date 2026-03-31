@@ -3,7 +3,6 @@ import React from 'react'
 import cl from './LoginByEmail.module.scss'
 import classNames from 'classnames'
 import Text from '@/src/shared/ui/Text/Text'
-import { Input } from '@/src/shared/ui/Input/ui/Input'
 import Button from '@/src/shared/ui/Button/Button'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { AppLink } from '@/src/shared/ui/Link/AppLink'

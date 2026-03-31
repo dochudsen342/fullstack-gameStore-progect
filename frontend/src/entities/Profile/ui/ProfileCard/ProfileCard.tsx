@@ -5,6 +5,7 @@ import { Navbar } from '@/src/widgets/Navbar'
 import Text from '@/src/shared/ui/Text/Text'
 import { Input } from '@/src/shared/ui/Input/ui/Input'
 import { Profile } from '../../types/profile'
+import { FormInput } from '@/src/shared/ui/Input'
 
 interface ProfileCardProps {
     className?: string,
@@ -25,10 +26,10 @@ const ProfileCard = ({ className, profileData }: ProfileCardProps) => {
                 <div className={cl['profile-card']}>
                     <Text className={cl.profileCardTitle} title='Настройки профиля' />
                     <form className={cl['form-section']}>
-                        <Input type='text' labelText='Имя' value={profileData.userName} />
-                        <Input labelText='Электронная почта' type='email' value={profileData.email} />
-                        <Input labelText='Никнейм' type="text" value={profileData.Nickname} />
-                        <Input labelText='Дата рождения' type="text" value={profileData.birthDay} />
+                        <FormInput type='text' labelText='Имя' value={profileData.userName} />
+                        <FormInput labelText='Электронная почта' type='email' value={profileData.email} />
+                        <FormInput labelText='Никнейм' type="text" value={profileData.Nickname} />
+                        <FormInput labelText='Дата рождения' type="text" value={profileData.birthDay} />
                     </form>
 
                     <div className={cl['gender-section']}>

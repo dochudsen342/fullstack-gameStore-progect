@@ -26,16 +26,6 @@ export class UsersService {
         return user
     }
 
-    async findProfileByUserId(dto: { userId: number }) {
-        const profile = await this.prisma.user.findUnique({ where: { id: dto.userId }, include: { profile: true } })
-        if (!profile) {
-            return null
-        }
-
-        const { password, ...profileWithoutPassword } = profile
-        return profileWithoutPassword
-    }
-
     async getUserByEmail(email: string) {
         const user = this.prisma.user.findUnique({ where: { email } })
         if (!user) {

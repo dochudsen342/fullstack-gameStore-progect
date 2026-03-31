@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create, createStore } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { RegisterSchema, RegisterUser, ValidateNicknameSchema } from "../types/registerSchema";
 import axios, { AxiosError } from "axios";
@@ -20,6 +20,7 @@ const initialState: RegisterSchema = {
         nicknameError: '',
     }
 }
+
 export const useRegisterStore = create<RegisterStore>()(immer((set) => ({
     ...initialState,
     register: async (registerData) => {
@@ -70,3 +71,4 @@ export const useRegisterStore = create<RegisterStore>()(immer((set) => ({
 
     }
 })))
+

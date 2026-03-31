@@ -13,23 +13,4 @@ export class UsersController {
         return this.usersService.createUser(dto)
     }
 
-    @UseGuards(JwtAuthGuard)
-    @Post('/JwtGuardTest')
-    async test() {
-        return {
-            message: 'Запрос пройден'
-        }
-    }
-
-    @Post('/profileTest')
-    async profile(@Body() dto: { userId: number }) {
-        const profile = await this.usersService.findProfileByUserId(dto)
-
-        return {
-            message: 'Profile find',
-            profile
-        }
-    }
-
-
 }
