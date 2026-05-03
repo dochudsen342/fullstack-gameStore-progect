@@ -21,6 +21,7 @@ export default function RootLayout({
         <AuthProvider>
           <QueryProvider>
             <main>
+              <Navbar />
               {children}
             </main>
           </QueryProvider>

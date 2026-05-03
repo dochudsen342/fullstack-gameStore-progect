@@ -8,11 +8,7 @@ interface RegisterPageProps {
 
 const RegisterPage = ({ className }: RegisterPageProps) => {
 
-    return (
-        <>
-            <RegisterForm />
-        </>
-    )
+    return (<RegisterForm />)
 }
 
 export default RegisterPage

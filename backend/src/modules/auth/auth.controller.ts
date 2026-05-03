@@ -20,7 +20,6 @@ export class AuthController {
         })
 
         return {
-            message: 'Вход успешен',
             id: loginUser?.user.id
         }
     }

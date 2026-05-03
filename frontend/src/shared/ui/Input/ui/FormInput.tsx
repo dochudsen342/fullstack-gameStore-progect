@@ -19,6 +19,7 @@ interface FormInputProps extends HTMLInputProps {
 
 
 export const FormInput = memo((props: FormInputProps) => {
+    //Если ошибок несколько будет показываться последняя 
     const {
         className,
         type = 'text',
@@ -34,8 +35,8 @@ export const FormInput = memo((props: FormInputProps) => {
     } = props
 
 
-
     const [inputErrorMessage, setInputErrorMessage] = useState(ErrorText)
+
 
     useEffect(() => {
         setInputErrorMessage(ErrorText)
@@ -56,7 +57,7 @@ export const FormInput = memo((props: FormInputProps) => {
                 placeholder={placeholder}
                 disabled={disabled}
                 value={value}
-                className={classNames(cl.Input, { [cl.InputError]: Boolean(inputErrorMessage) }, [className])}
+                className={classNames(cl.FormInput, { [cl.InputError]: Boolean(inputErrorMessage) }, [className])}
                 {...othersProps}
             />
         </div>

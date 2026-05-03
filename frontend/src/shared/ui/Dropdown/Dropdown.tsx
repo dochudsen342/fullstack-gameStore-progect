@@ -9,7 +9,7 @@ export type DropdownItem = {
     unavailable?: boolean
     content: ReactNode
     onClick?: () => void
-    href: string // сделать ссылку обязательным
+    href: string 
 }
 
 type DropdownProps = {

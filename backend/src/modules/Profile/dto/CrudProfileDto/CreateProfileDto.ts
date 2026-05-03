@@ -4,6 +4,3 @@ export class CreateProfileDto {
     readonly birthday!: string
 }
 
-export class UpdateProfile extends CreateProfileDto {
-    readonly id!: string
-}

@@ -22,7 +22,6 @@ const HomePage = ({ className }: HomePageProps) => {
 
     return (
         <div>
-            <Navbar />
             <GameSlider />
             <button onClick={testFetchForFeature}>ТЕСТОВЫЙ ЗАПРОС НА ПРОВЕРКУ</button>
         </div>

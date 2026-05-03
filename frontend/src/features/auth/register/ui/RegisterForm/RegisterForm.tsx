@@ -23,8 +23,6 @@ interface RegisterFormProps {
 }
 
 
-
-
 const RegisterForm = ({ className }: RegisterFormProps) => {
 
     const { register, handleSubmit, formState: { errors }, getValues } = useForm<RegisterUser>()
@@ -43,7 +41,6 @@ const RegisterForm = ({ className }: RegisterFormProps) => {
     const onRegisterSubmit: SubmitHandler<RegisterUser> = (data) => {
         registerFnc(data)
     }
-
 
     if (isLoading) {
         return <div className={classNames(cl['register-container'], className)}>

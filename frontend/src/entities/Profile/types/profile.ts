@@ -1,13 +1,9 @@
+import { User } from "../../User/model/types/user"
 
 export type Profile = {
-    Nickname: string,
-    email: string,
-    userName: string,
-    birthDay: string,
+    nickname: string,
+    avatar: string,
+    birthday: string,
+    user?: User
 }
 
-export interface ProfileSchema {
-    data?: Profile,
-    isLoading: boolean,
-    error?: string
-}

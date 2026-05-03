@@ -1,6 +1,6 @@
 export type User = {
     id: number,
-    avatar?: string,
+    email?: string,
 }
 
 export type UserSchema = {

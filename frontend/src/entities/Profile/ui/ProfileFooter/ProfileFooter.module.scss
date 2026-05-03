@@ -1,0 +1,50 @@
+.optionsButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 115px;
+    gap: 25px;
+    width: 100%;
+}
+
+.applyButton {
+    width: 275px;
+    padding: 16px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.cancelEditButton {
+    width: 275px;
+    padding: 16px;
+    background: rgb(172, 4, 4);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.editBtn {
+    width: 350px;
+    padding: 16px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}

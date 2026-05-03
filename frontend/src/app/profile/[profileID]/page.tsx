@@ -1,7 +1,7 @@
 import React from 'react'
 import cl from './page.module.scss'
 import ProfilePage from '@/src/pages/ProfilePage/ui/ProfilePage'
-import { RequireAuthProvider } from '../model/providers/RequireAuthProvider/RequireAuthProvider'
+import { RequireAuthProvider } from '../../model/providers/RequireAuthProvider/RequireAuthProvider'
 
 interface pageProps {
     className?: string,

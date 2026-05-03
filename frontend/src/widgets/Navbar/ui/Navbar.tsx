@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useActionState } from 'react'
 import styles from './Navbar.module.scss'
 import Button from '@/src/shared/ui/Button/Button'
@@ -23,14 +22,10 @@ const Navbar = ({ className }: NavbarProps) => {
             Профиль
         </AppLink>)
 
-
-
     return (
         <header className={styles.header}>
             <div className={styles.logoSection}>
-                <AppLink href="/" className={styles.logo}>
-                    GameStore
-                </AppLink>
+                <AppLink href="/" className={styles.logo}>GameStore</AppLink>
                 <Button className={styles.catalogButton}>
                     <span className={styles.catalogIcon}>☰</span>
                     Каталог
@@ -59,7 +54,7 @@ const Navbar = ({ className }: NavbarProps) => {
 
                 {userAuthData ? <Dropdown triger={dropdownTrigger} items={
                     [
-                        { content: 'Профиль', href: '/profile', },
+                        { content: 'Профиль', href: `/profile/${userAuthData?.id}`, },
                         { content: 'Заказы', href: '/2' },
                         { content: 'Выход', href: '/', onClick: logout },
 

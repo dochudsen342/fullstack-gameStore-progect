@@ -16,7 +16,7 @@ export const useUserStore = create<UserStore>()(immer((set) => ({
     _isMounted: false,
     setAuthData: (authData) => set((state) => {
         state.authData = authData;
-        localStorage.setItem(USER_ID_LOCALSTORAGE_KEY, JSON.stringify(state.authData?.id))
+        localStorage.setItem(USER_ID_LOCALSTORAGE_KEY, JSON.stringify(state.authData))
     }),
     initAuthData: () => set((state) => {
         const user = localStorage.getItem(USER_ID_LOCALSTORAGE_KEY)

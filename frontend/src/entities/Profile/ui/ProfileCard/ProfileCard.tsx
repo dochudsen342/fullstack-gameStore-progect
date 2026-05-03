@@ -1,66 +1,72 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import cl from './ProfileCard.module.scss'
-import { Navbar } from '@/src/widgets/Navbar'
 import Text from '@/src/shared/ui/Text/Text'
-import { Input } from '@/src/shared/ui/Input/ui/Input'
 import { Profile } from '../../types/profile'
 import { FormInput } from '@/src/shared/ui/Input'
+import { Spiner } from '@/src/shared/ui/Spiner/Spiner'
+import { ErrorPage } from '@/src/pages/ErrorPage'
+import { errorMessages } from '@/src/shared/lib/constants/errorMessages'
+import { useForm } from 'react-hook-form'
+import { ProfileFooter } from '../ProfileFooter/ProfileFooter'
+import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar'
+
 
 interface ProfileCardProps {
     className?: string,
-    onChangeFirstName?: (nickname: string) => void
-    onChangeEmail?: (email: string) => void
-    onChageNickname?: (name: string) => void
-    onChangeBirthday?: (birthday: string) => void,
-    profileData: Profile
+    isLoading?: boolean,
+    readonly: boolean,
+    updatedMessage?: string
+    error?: string | null
+    profileData?: Profile,
+    onRetryHandler?: () => void,
+    updateProfile: (data: Profile) => void,
+    cancelEdit: () => void,
+    setReadonly: (state: boolean) => void
 }
 
-const ProfileCard = ({ className, profileData }: ProfileCardProps) => {
+const ProfileCard = ({ className, profileData, isLoading, error, readonly, onRetryHandler, setReadonly, updateProfile, cancelEdit }: ProfileCardProps) => {
+    const { register, watch, reset } = useForm<Profile>({
+        values: {
+            avatar: profileData?.avatar || '',
+            nickname: profileData?.nickname || '',
+            birthday: profileData?.birthday || '',
+        }
+    })
+
+    const allFields = watch()
+
+    const cancelEditHandler = () => {
+        reset({
+            avatar: profileData?.avatar || '',
+            nickname: profileData?.nickname || '',
+            birthday: profileData?.birthday || '',
+        })
+        cancelEdit()
+    }
+
+    if (isLoading) {
+        return (<div className={cl.loaderWrapper}><Spiner /></div>)
+    }
+
+    if (error) {
+        return <ErrorPage onRetry={onRetryHandler} title={errorMessages[error]} />
+    }
 
 
     return (
-        <>
-            <Navbar />
-            <div className={cl.profileWrapper}>
-                <div className={cl['profile-card']}>
-                    <Text className={cl.profileCardTitle} title='Настройки профиля' />
-                    <form className={cl['form-section']}>
-                        <FormInput type='text' labelText='Имя' value={profileData.userName} />
-                        <FormInput labelText='Электронная почта' type='email' value={profileData.email} />
-                        <FormInput labelText='Никнейм' type="text" value={profileData.Nickname} />
-                        <FormInput labelText='Дата рождения' type="text" value={profileData.birthDay} />
-                    </form>
-
-                    <div className={cl['gender-section']}>
-                        <h2 className={cl['section-title']}>Пол</h2>
-                        <div className={cl['radio-group']}>
-                            <label className={cl['radio-label']}>
-                                <Input type="radio" name="gender" defaultChecked /> Мужской
-                            </label>
-                            <label className={cl['radio-label']}>
-                                <Input type="radio" name="gender" /> Женский
-                            </label>
-                        </div>
-                    </div>
-
-                    <div className={cl.optionsButton}>
-                        <button className={cl['delete-profile']}>Удалить профиль</button>
-                        <button className={cl['save-button']}>Сохранить</button>
-                    </div>
-
-
-                </div>
-                <div className={cl['profile-header']}>
-                    <div className={cl['avatarSection']}>
-                        <div className={cl['avatar']}>
-                            Д
-                        </div>
-                    </div>
-                    <button className={cl['save-button']}>Загрузить фото</button>
-                </div>
-            </div></>
-
+        <div className={cl.profileWrapper}>
+            <div className={cl['profile-card']}>
+                <Text className={cl.profileCardTitle} title='Настройки профиля' />
+                <form className={cl['form-section']}>
+                    <FormInput disabled={true} labelText='Электронная почта' type='email' value={profileData?.user?.email} />
+                    <FormInput {...register?.('nickname')} disabled={readonly} labelText='Никнейм' type="text" />
+                    <FormInput {...register?.('birthday')} disabled={readonly} labelText='Дата рождения' type="text" />
+                </form>
+                <ProfileFooter formState={allFields} profileData={profileData} updateProfile={updateProfile} cancelEdit={cancelEditHandler} setReadonly={setReadonly} readonly={readonly} />
+            </div>
+            <ProfileAvatar avatar={profileData?.avatar} />
+        </div>
     )
 }
 

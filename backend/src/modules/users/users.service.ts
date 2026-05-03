@@ -8,7 +8,6 @@ export class UsersService {
     constructor(private prisma: PrismaService) { }
 
     async createUser(dto: CreateUserDto) {
-        console.log(dto)
         const user = this.prisma.user.create({
             data: {
                 email: dto.email,
@@ -28,6 +27,7 @@ export class UsersService {
 
     async getUserByEmail(email: string) {
         const user = this.prisma.user.findUnique({ where: { email } })
+        
         if (!user) {
             throw new HttpException('Пользователя с таким Email не существует', HttpStatus.BAD_REQUEST)
         }

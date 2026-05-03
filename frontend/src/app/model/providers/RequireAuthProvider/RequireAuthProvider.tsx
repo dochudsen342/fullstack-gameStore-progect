@@ -15,15 +15,9 @@ export const RequireAuthProvider = ({ children }: RequireAuthProps) => {
 
     useEffect(() => {
         if (isMounted && !auth) {
-            router.push('/')
+            router.replace('/')
         }
-    }, [isMounted,auth, router])
+    }, [isMounted, auth, router])
 
-    if (!isMounted) {
-        return <Spiner />
-    }
-
-
-
-    return children
+    return auth ? children : <Spiner />
 }

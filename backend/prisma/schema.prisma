@@ -19,7 +19,6 @@ model User {
   email String  @unique
   password String
   profile Profile?
-
   @@map("Users")
 } 
 
@@ -28,7 +27,7 @@ model Profile{
   userId Int @unique
   nickname String @unique
   avatar String?
-  birthday String?
+  birthday String?,
   user User @relation(fields:[userId],references:[id])
 
 
