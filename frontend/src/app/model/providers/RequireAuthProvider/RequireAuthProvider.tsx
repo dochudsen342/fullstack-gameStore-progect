@@ -12,7 +12,6 @@ export const RequireAuthProvider = ({ children }: RequireAuthProps) => {
     const auth = useUserStore(getUserAuthData)
     const isMounted = useUserStore((state) => state._isMounted)
     const router = useRouter()
-    console.log(auth)
     useEffect(() => {
         if (isMounted && !auth) {
             router.replace('/')

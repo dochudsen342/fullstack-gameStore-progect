@@ -11,7 +11,7 @@ interface ErrorPageProps {
     onErrorBack?: () => void
 }
 
-export const ErrorPage = ({
+const ErrorPage = ({
     className,
     title = 'Произошла ошибка',
     message = 'Попробуйте обновить страницу',
@@ -35,3 +35,5 @@ export const ErrorPage = ({
         </div>
     )
 }
+
+export default ErrorPage
