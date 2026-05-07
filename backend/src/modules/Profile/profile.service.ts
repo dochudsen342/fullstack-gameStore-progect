@@ -24,6 +24,8 @@ export class ProfileService {
 
 
     async updateProfile(dto: CreateProfileDto, profileId: string) {
+        //не нужно обращаться к БД если поля не изменились
+
         const profile = await this.prisma.profile.update({ where: { userId: Number(profileId) }, data: { ...dto }, include: { user: { select: { email: true } } } })
 
         return profile

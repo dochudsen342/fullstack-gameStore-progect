@@ -18,9 +18,8 @@ export class AuthController {
             sameSite: 'strict',
             maxAge: 3600000
         })
-
         return {
-            id: loginUser?.user.id
+            ...loginUser.user
         }
     }
 

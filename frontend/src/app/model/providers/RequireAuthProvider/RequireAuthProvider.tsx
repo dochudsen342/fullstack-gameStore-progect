@@ -1,8 +1,8 @@
 'use client'
-import { getUserAuthData, useUserStore } from "@/src/entities/User"
-import { Spiner } from "@/src/shared/ui/Spiner/Spiner"
-import { useRouter } from "next/navigation"
-import { ReactNode, useEffect } from "react"
+import { getUserAuthData, useUserStore } from '@/src/entities/User'
+import { Spiner } from '@/src/shared/ui/Spiner/Spiner'
+import { useRouter } from 'next/navigation'
+import { ReactNode, useEffect } from 'react'
 
 interface RequireAuthProps {
     children: ReactNode
@@ -10,14 +10,14 @@ interface RequireAuthProps {
 
 export const RequireAuthProvider = ({ children }: RequireAuthProps) => {
     const auth = useUserStore(getUserAuthData)
-    const isMounted = useUserStore(state => state._isMounted)
+    const isMounted = useUserStore((state) => state._isMounted)
     const router = useRouter()
-
+    console.log(auth)
     useEffect(() => {
         if (isMounted && !auth) {
             router.replace('/')
         }
     }, [isMounted, auth, router])
 
-    return auth ? children : <Spiner />
+    return isMounted ? children : <Spiner />
 }

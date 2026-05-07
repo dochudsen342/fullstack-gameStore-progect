@@ -1,19 +1,15 @@
-"use client"
-import { useUserStore } from "@/src/entities/User"
-import { useEffect } from "react"
+'use client'
+import { useUserStore } from '@/src/entities/User'
+import { useEffect } from 'react'
 
 function AuthProvider({ children }: any) {
-    const userInitAuthData = useUserStore(state => state.initAuthData)
+    const userInitAuthData = useUserStore((state) => state.initAuthData)
 
     useEffect(() => {
         userInitAuthData()
     }, [])
 
-    return (
-        <>
-            {children}
-        </>
-    )
+    return <>{children}</>
 }
 
 export { AuthProvider }

@@ -1,14 +1,13 @@
 import React from 'react'
 import cl from './page.module.scss'
-import ProfilePage from '@/src/pages/ProfilePage/ui/ProfilePage'
-import { RequireAuthProvider } from '../../model/providers/RequireAuthProvider/RequireAuthProvider'
+import { ProfilePage } from '@/src/pages/ProfilePage'
+import { RequireAuthProvider } from '../../model'
 
 interface pageProps {
-    className?: string,
+    className?: string
 }
 
 const page = ({ className }: pageProps) => {
-
     return (
         <RequireAuthProvider>
             <ProfilePage />

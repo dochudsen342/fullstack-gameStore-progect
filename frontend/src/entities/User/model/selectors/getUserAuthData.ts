@@ -1,3 +1,3 @@
-import { UserStore } from "../store/userStore";
+import { UserStore } from '../store/userStore'
 
 export const getUserAuthData = (state: UserStore) => state?.authData

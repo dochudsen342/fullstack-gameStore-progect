@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend — Fullstack Profile Project
 
-## Getting Started
+Это frontend-часть приложения для управления профилем пользователя, построенная на Next.js 16 с использованием TypeScript и современной архитектуры.
 
-First, run the development server:
+## 🛠️ Технологический стек
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Основные технологии
+- **Next.js 16** — React-фреймворк с App Router
+- **React 19** — Библиотека UI
+- **TypeScript 5** — Статическая типизация
+- **Zustand 5** — Управление состоянием
+- **React Query 5** — Управление асинхронными данными
+- **Axios** — HTTP-клиент
+- **React Hook Form** — Валидация и управление формами
+- **SCSS Modules** — Стилизация компонентов
+
+### UI компоненты
+- **Headless UI** — Недизайнерские компоненты
+- **Radix UI** — Доступные UI примитивы
+- **Lucide React** — Иконки
+- **Swiper** — Слайдер
+
+### Утилиты
+- **Classnames** / **clsx** / **tailwind-merge** — Работа с CSS классами
+- **Immer** — Невзаимозаменяемое обновление состояния
+- **Sass** — Preprocessor для CSS
+
+## 📁 Структура проекта
+
+```
+frontend/
+├── src/
+│   ├── app/                    # Next.js App Router страницы
+│   ├── entities/               # Бизнес-сущности (Profile, User, Game)
+│   ├── features/               # Пользовательские сценарии (EditableProfileCard, auth)
+│   ├── pages/                  # Страницы (ProfilePage, HomePage)
+│   ├── shared/                 # Переиспользуемые компоненты и утилиты
+│   │   ├── api/               # API клиент
+│   │   ├── lib/               # Утилиты и хуки
+│   │   ├── types/             # Общие типы
+│   │   └── ui/                # Атомарные UI компоненты
+│   └── widgets/               # Сложные составные компоненты
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Запуск проекта
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Предварительные требования
+- Node.js 20+
+- npm или yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Установка зависимостей
+```bash
+npm install
+```
 
-## Learn More
+### Development
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Приложение запустится на [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Production build
+```bash
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Линтинг
+```bash
+npm run lint
+```
 
-## Deploy on Vercel
+## 🌐 API
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Приложение общается с backend по адресу `http://localhost:8000`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Основные эндпоинты
+- `POST /api/profile/update` — Обновление профиля
+- `GET /api/profile/getProfile` — Получение данных профиля
+- `POST /api/auth/login` — Вход
+- `POST /api/auth/register` — Регистрация
+
+## 📦 Основные компоненты
+
+### Entities (Сущности)
+- **Profile** — Карточка профиля, типизация данных
+- **User** — Данные пользователя, аутентификация
+- **Game** — Игровые данные
+
+### Features (Фичи)
+- **EditableProfileCard** — Редактируемая карточка профиля
+- **auth** — Логин/регистрация
+
+### Shared UI
+- **Button** — Кнопка
+- **Input** — Поле ввода
+- **NotificationCard** — Уведомления
+- **ErrorPage** — Страница ошибки
+- **Spiner** — Индикатор загрузки
+
+## 🔐 Аутентификация
+
+Приложение использует localStorage для хранения токена аутентификации. Компонент `RequireAuthProvider` защищает маршруты, требующие авторизации.
+
+## 🎨 Стилизация
+
+Проект использует SCSS Modules для изолированной стилизации компонентов. Все стили находятся в файлах `*.module.scss` рядом с компонентами.
+
+## 📝 Разработка
+
+### Добавление новой сущности
+1. Создать папку в `src/entities/`
+2. Добавить типы в `types/`
+3. Добавить UI компоненты в `ui/`
+
+### Добавление новой фичи
+1. Создать папку в `src/features/`
+2. Добавить модель (store, service, types)
+3. Добавить UI компонент
+
+## 🤝 Вклад
+
+1. Fork проекта
+2. Создать ветку (`git checkout -b feature/AmazingFeature`)
+3. Закоммитить изменения (`git commit -m 'Add some AmazingFeature'`)
+4. Пуш в ветку (`git push origin feature/AmazingFeature`)
+5. Открыть Pull Request
+
+## 📄 Лицензия
+
+Проект находится в разработке.

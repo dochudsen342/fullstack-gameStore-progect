@@ -1,4 +1,3 @@
-
 import { ChangeEvent, InputHTMLAttributes, memo, useEffect, useState } from 'react'
 import cl from './Input.module.scss'
 import classNames from 'classnames'
@@ -10,16 +9,14 @@ interface FormInputProps extends HTMLInputProps {
     value?: string | number
     type?: string
     placeholder?: string
-    disabled?: boolean,
-    htmlFor?: string,
-    labelText?: string,
+    disabled?: boolean
+    htmlFor?: string
+    labelText?: string
     ErrorText?: string
 }
 
-
-
 export const FormInput = memo((props: FormInputProps) => {
-    //Если ошибок несколько будет показываться последняя 
+    //Если ошибок несколько будет показываться последняя
     const {
         className,
         type = 'text',
@@ -34,9 +31,7 @@ export const FormInput = memo((props: FormInputProps) => {
         ...othersProps
     } = props
 
-
     const [inputErrorMessage, setInputErrorMessage] = useState(ErrorText)
-
 
     useEffect(() => {
         setInputErrorMessage(ErrorText)
@@ -48,7 +43,11 @@ export const FormInput = memo((props: FormInputProps) => {
 
     return (
         <div className={cl.InputWrapper}>
-            {labelText && <label className={classNames(cl.Label)} htmlFor={htmlFor}>{labelText}</label>}
+            {labelText && (
+                <label className={classNames(cl.Label)} htmlFor={htmlFor}>
+                    {labelText}
+                </label>
+            )}
             {inputErrorMessage && <span className={cl.ErrorMessage}>{inputErrorMessage}</span>}
             <input
                 id={id}
@@ -57,7 +56,11 @@ export const FormInput = memo((props: FormInputProps) => {
                 placeholder={placeholder}
                 disabled={disabled}
                 value={value}
-                className={classNames(cl.FormInput, { [cl.InputError]: Boolean(inputErrorMessage) }, [className])}
+                className={classNames(
+                    cl.FormInput,
+                    { [cl.InputError]: Boolean(inputErrorMessage) },
+                    [className]
+                )}
                 {...othersProps}
             />
         </div>

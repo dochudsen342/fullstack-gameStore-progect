@@ -10,27 +10,25 @@ import TheWitcherIcon from '@/src/shared/assets/icon/ss_5710298af2318afd9aa72449
 import Text from '@/src/shared/ui/Text/Text'
 
 interface GameSliderProps {
-    className?: string,
+    className?: string
 }
 
 const SliderItems: Slider[] = [
-    { icon: <Icon width={500} height={300} img={WowIcon} alt="WowIcon" /> },
-    { icon: <Icon width={500} height={300} img={PubgIcon} alt="PubgIcon" /> },
-    { icon: <Icon width={500} height={300} img={WowPoster} alt="WowIcon" /> },
-    { icon: <Icon width={500} height={300} img={TLOUIcon} alt="TheLastOfUs Icon" /> },
-    { icon: <Icon width={500} height={300} img={TheWitcherIcon} alt="TheLastOfUs Icon" /> },
+    { icon: <Icon width={500} height={300} img={WowIcon} alt='WowIcon' /> },
+    { icon: <Icon width={500} height={300} img={PubgIcon} alt='PubgIcon' /> },
+    { icon: <Icon width={500} height={300} img={WowPoster} alt='WowIcon' /> },
+    { icon: <Icon width={500} height={300} img={TLOUIcon} alt='TheLastOfUs Icon' /> },
+    { icon: <Icon width={500} height={300} img={TheWitcherIcon} alt='TheLastOfUs Icon' /> },
 ]
 
 const GameSlider = ({ className }: GameSliderProps) => {
-
     return (
         <>
-            <Text className={cl.SliderTitle} title="Популярные игры" />
+            <Text className={cl.SliderTitle} title='Популярные игры' />
             <div className={cl.SliderWrapper}>
                 <Slider className={cl.Slider} items={SliderItems} />
             </div>
         </>
-
     )
 }
 

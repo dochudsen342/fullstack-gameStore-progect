@@ -1,10 +1,9 @@
-import { Profile } from "@/src/entities/Profile/types/profile";
-
+import { Profile } from '@/src/entities/Profile/types/profile'
 
 export interface EditableProfileSchema {
-    data?: Profile,
-    form?: Profile,
-    isLoading: boolean,
-    readonly: boolean,
-    error?: string,
+    data?: Profile
+    isLoading: boolean
+    readonly: boolean
+    isEdit: boolean
+    error?: string
 }

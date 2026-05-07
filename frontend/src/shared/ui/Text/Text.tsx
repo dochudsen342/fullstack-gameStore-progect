@@ -8,19 +8,17 @@ type TextSize = 'sizeL' | 'sizeM'
 
 const mapSizeToHeaderTag: Record<TextSize, HeaderTag> = {
     sizeL: 'h1',
-    sizeM: 'h2'
+    sizeM: 'h2',
 }
 
 type TextProps = {
-    className?: string,
-    title?: string,
-    text?: string,
-    size?: TextSize,
+    className?: string
+    title?: string
+    text?: string
+    size?: TextSize
 }
 
 const Text = ({ className, size = 'sizeM', title, text }: TextProps) => {
-
-
     const mods = {
         [cl[size]]: true,
     }

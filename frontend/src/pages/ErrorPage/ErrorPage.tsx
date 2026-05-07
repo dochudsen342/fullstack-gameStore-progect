@@ -24,19 +24,12 @@ export const ErrorPage = ({
                 <h1 className={cl.errorTitle}>{title}</h1>
                 <p className={cl.errorMessage}>{message}</p>
                 <div className={cl.buttonGroup}>
-                    {(
+                    {
                         <Button onClick={onRetry} className={cl.retryButton}>
                             Попробовать снова
                         </Button>
-                    )}
-                    {(
-                        <Button
-
-                            className={cl.backButton}
-                        >
-                            Назад
-                        </Button>
-                    )}
+                    }
+                    {<Button className={cl.backButton}>Назад</Button>}
                 </div>
             </div>
         </div>

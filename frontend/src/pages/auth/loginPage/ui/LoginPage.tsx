@@ -1,18 +1,12 @@
 import React from 'react'
-import classNames from 'classnames'
-import LoginByEmail from '@/src/features/auth/login/ui/LoginByEmail/LoginByEmail'
+import { LoginByEmail } from '@/src/features/auth'
 
 interface LoginPageProps {
-    className?: string,
+    className?: string
 }
 
 const LoginPage = ({ className }: LoginPageProps) => {
-
-    return (
-        <>
-            <LoginByEmail />
-        </>
-    )
+    return <LoginByEmail />
 }
 
 export default LoginPage

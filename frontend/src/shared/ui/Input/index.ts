@@ -1,7 +1,4 @@
-import { FormInput } from "./ui/FormInput";
-import { Input } from "./ui/Input";
+import { FormInput } from './ui/FormInput'
+import { Input } from './ui/Input'
 
-export {
-    FormInput,
-    Input
-}
+export { FormInput, Input }

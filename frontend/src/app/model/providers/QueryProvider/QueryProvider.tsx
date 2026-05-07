@@ -1,18 +1,13 @@
-"use client"
-import { useState } from "react"
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
-
+'use client'
+import { useState } from 'react'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 
 function QueryProvider({ children }: any) {
     const [client] = useState(new QueryClient())
 
-
-
     return (
         <>
-            <QueryClientProvider client={client}>
-                {children}
-            </QueryClientProvider>
+            <QueryClientProvider client={client}>{children}</QueryClientProvider>
         </>
     )
 }

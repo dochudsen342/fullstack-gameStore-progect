@@ -1,4 +1,3 @@
-
 import { ChangeEvent, InputHTMLAttributes, memo } from 'react'
 import cl from './Input.module.scss'
 import classNames from 'classnames'
@@ -11,9 +10,8 @@ interface InputProps extends HTMLInputProps {
     type?: string
     placeholder?: string
     onChange?: (value: string) => void
-    disabled?: boolean,
+    disabled?: boolean
 }
-
 
 export const Input = memo((props: InputProps) => {
     const {
@@ -27,7 +25,6 @@ export const Input = memo((props: InputProps) => {
         id,
         ...othersProps
     } = props
-
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         onChange?.(e.target.value)

@@ -1,0 +1,45 @@
+.NotificationCard {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    max-width: 270px;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.NotificationShow {
+    opacity: 1;
+}
+
+.message {
+    flex: 1;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+    margin-left: 12px;
+}
+
+.closeButton:hover {
+    opacity: 1;
+}

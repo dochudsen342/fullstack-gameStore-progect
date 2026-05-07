@@ -3,12 +3,11 @@ import cl from './Button.module.scss'
 import classNames from 'classnames'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    className?: string,
+    className?: string
     children: ReactNode
 }
 
 const Button = ({ className, children, ...otherProps }: ButtonProps) => {
-
     return (
         <button {...otherProps} className={classNames(cl.Button, [className])}>
             {children}

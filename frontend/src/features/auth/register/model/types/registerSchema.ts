@@ -1,8 +1,7 @@
-
 export interface RegisterUser {
-    email: string,
-    password: string,
-    nickname: string,
+    email: string
+    password: string
+    nickname: string
 }
 
 export interface ValidateNicknameSchema {
@@ -10,11 +9,11 @@ export interface ValidateNicknameSchema {
 }
 
 interface FormFieldsServerError {
-    emailError?: string,//я уверен,что это string
-    nicknameError?: string,//я уверен,что это string
+    emailError?: string //я уверен,что это string
+    nicknameError?: string //я уверен,что это string
 }
 
 export interface RegisterSchema {
-    isLoading: boolean,
+    isLoading: boolean
     formError: FormFieldsServerError
 }
