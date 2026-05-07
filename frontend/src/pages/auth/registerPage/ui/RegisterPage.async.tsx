@@ -1,3 +1,4 @@
 import dynamic from 'next/dynamic'
 
-export const AsyncRegisterPage = dynamic(() => import('./RegisterPage'))
+const LazyRegisterPage = dynamic(() => import('./RegisterPage'))
+export default LazyRegisterPage

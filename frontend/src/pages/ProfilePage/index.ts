@@ -1,3 +1,3 @@
-import { AsyncProfilePage as ProfilePage } from './ui/ProfilePage.async'
+import LazyProfilePage from './ui/ProfilePage.async'
 
-export { ProfilePage }
+export default LazyProfilePage

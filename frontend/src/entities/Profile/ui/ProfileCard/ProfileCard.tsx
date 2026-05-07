@@ -9,7 +9,7 @@ import { errorMessages } from '@/src/shared/lib/constants/errorMessages'
 import { useForm } from 'react-hook-form'
 import { ProfileFooter } from '../ProfileFooter/ProfileFooter'
 import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar'
-import ErrorPage from '@/src/pages/ErrorPage/ErrorPage'
+import LazyErrorPage from '@/src/pages/ErrorPage'
 
 interface ProfileCardProps {
     className?: string
@@ -63,7 +63,7 @@ const ProfileCard = ({
     }
 
     if (error) {
-        return <ErrorPage onRetry={onRetryHandler} title={errorMessages[error]} />
+        return <LazyErrorPage onRetry={onRetryHandler} title={errorMessages[error]} />
     }
 
     return (

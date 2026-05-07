@@ -1,7 +1,7 @@
 import React from 'react'
 import cl from './page.module.scss'
-import { ProfilePage } from '@/src/pages/ProfilePage'
 import { RequireAuthProvider } from '../../model'
+import LazyProfilePage from '@/src/pages/ProfilePage'
 
 interface pageProps {
     className?: string
@@ -10,7 +10,7 @@ interface pageProps {
 const page = ({ className }: pageProps) => {
     return (
         <RequireAuthProvider>
-            <ProfilePage />
+            <LazyProfilePage />
         </RequireAuthProvider>
     )
 }

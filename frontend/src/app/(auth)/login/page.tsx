@@ -1,8 +1,8 @@
+import LazyLoginPage from '@/src/pages/auth/loginPage/ui/LoginPage.async'
 import React from 'react'
-import { LoginPage } from '@/src/pages/auth'
 
 const Page = () => {
-    return <LoginPage />
+    return <LazyLoginPage />
 }
 
 export default Page
