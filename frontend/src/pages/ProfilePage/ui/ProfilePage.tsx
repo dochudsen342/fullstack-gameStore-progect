@@ -1,6 +1,4 @@
 'use client'
-
-import { RequireAuthProvider } from '@/src/app/model'
 import { EditableProfileCard } from '@/src/features/EditableProfileCard'
 import Text from '@/src/shared/ui/Text/Text'
 import { useParams } from 'next/navigation'
@@ -10,7 +8,8 @@ interface ProfilePageProps {
 }
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
-    const { profileID } = useParams<{ profileID: string }>() as { profileID: string }
+    const params = useParams()
+    const profileID = params?.profileID as string | undefined
 
     if (!profileID) {
         return <Text title='Профиль не найден' />
