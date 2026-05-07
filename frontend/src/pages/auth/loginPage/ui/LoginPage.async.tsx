@@ -1,3 +1,3 @@
 import dynamic from 'next/dynamic'
 
-export const AsyncRegisterPage = dynamic(() => import('./LoginPage'))
+export const AsyncLoginPage = dynamic(() => import('./LoginPage'))
