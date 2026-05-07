@@ -9,7 +9,7 @@ import { errorMessages } from '@/src/shared/lib/constants/errorMessages'
 import { useForm } from 'react-hook-form'
 import { ProfileFooter } from '../ProfileFooter/ProfileFooter'
 import { ProfileAvatar } from '../ProfileAvatar/ProfileAvatar'
-import { ErrorPage } from '@/src/pages/ErrorPage'
+import ErrorPage from '@/src/pages/ErrorPage/ErrorPage'
 
 interface ProfileCardProps {
     className?: string

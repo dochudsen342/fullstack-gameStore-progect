@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import { getIsMounted, useUserStore } from '@/src/entities/User'
-import { $api } from '@/src/shared/api/api'
 import { GameSlider } from '@/src/features/gameSlider'
 
 interface HomePageProps {
