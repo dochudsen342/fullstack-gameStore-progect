@@ -1,32 +1,30 @@
-import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
-import { ProfileService } from "./profile.service";
-import { CreateProfileDto } from "./dto/CrudProfileDto/CreateProfileDto";
-
-
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common'
+import { ProfileService } from './profile.service'
+import { CreateProfileDto } from './dto/CrudProfileDto/CreateProfileDto'
 
 @Controller('')
 export class ProfileController {
-    constructor(private profileService: ProfileService) { }
+   constructor(private profileService: ProfileService) {}
 
-    @Get('/getProfile/:id')
-    async getProfileByUserId(@Param('id') id: string) {
-        const profile = await this.profileService.getProfileByUserId(id)
+   @Get('/getProfile/:id')
+   async getProfileByUserId(@Param('id') id: string) {
+      const profile = await this.profileService.getProfileById(id)
 
-        return profile
-    }
+      return profile
+   }
 
-    @Patch('/updateProfile/:id')
-    async updateProfileData(@Param('id') profileId: string, @Body() dto: CreateProfileDto) {
-        const profile = await this.profileService.updateProfile(dto, profileId)
+   @Patch('/updateProfile/:id')
+   async updateProfileData(@Param('id') profileId: string, @Body() dto: CreateProfileDto) {
+      const profile = await this.profileService.updateProfile(dto, profileId)
 
-        return {
-            data: profile,
-            message: 'Профиль успешно обновлен!'
-        }
-    }
+      return {
+         data: profile,
+         message: 'Профиль успешно обновлен!', //возможно нужно для обновления ui ??
+      }
+   }
 
-    @Post('/checkFreeNickname')
-    async checkFreeNickname(@Body() dto: CreateProfileDto) {
-        return this.profileService.checkFreeNickname(dto)
-    }
+   @Post('/checkFreeNickname')
+   async checkFreeNickname(@Body() dto: CreateProfileDto) {
+      return this.profileService.checkFreeNickname(dto)
+   }
 }

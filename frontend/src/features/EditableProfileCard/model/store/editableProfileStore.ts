@@ -37,7 +37,11 @@ export const useEditableProfileStore = create<EditableProfileStore>()(
 
             try {
                 const responce = await updateProfileApi(editData, userId)
-                console.log(responce)
+
+                if (!responce) {
+                    throw new Error('Произошла ошибка загрузки профиля')
+                }
+
                 set({ isLoading: false, data: responce.data, readonly: true, isEdit: true })
             } catch (error: unknown) {
                 set({

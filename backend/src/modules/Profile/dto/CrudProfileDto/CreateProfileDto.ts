@@ -1,6 +1,14 @@
-export class CreateProfileDto {
-    readonly nickname!: string
-    readonly avatar!: string
-    readonly birthday!: string
-}
+import { IsOptional, IsString } from 'class-validator'
 
+export class CreateProfileDto {
+   @IsString()
+   readonly nickname!: string
+
+   @IsString()
+   @IsOptional()
+   readonly avatar!: string
+
+   @IsString()
+   @IsOptional()
+   readonly birthday!: string
+}

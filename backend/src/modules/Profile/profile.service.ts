@@ -1,45 +1,77 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
-import { CreateProfileDto } from "./dto/CrudProfileDto/CreateProfileDto";
-import { PrismaService } from "src/prisma/prisma.service";
-
-
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common'
+import { CreateProfileDto } from './dto/CrudProfileDto/CreateProfileDto'
+import { PrismaService } from 'src/prisma/prisma.service'
+import { Profile } from '../../../prisma/generated/client'
 
 @Injectable()
 export class ProfileService {
+   constructor(private prisma: PrismaService) {}
 
-    constructor(private prisma: PrismaService) { }
+   async checkFreeNickname(dto: CreateProfileDto) {
+      const profile = await this.prisma.profile.findUnique({
+         where: { nickname: dto.nickname },
+      })
 
+      if (profile) {
+         throw new HttpException('Никнейм уже занят', HttpStatus.CONFLICT)
+      }
 
-    async checkFreeNickname(profileDto: CreateProfileDto) {
-        const profile = await this.prisma.profile.findUnique({ where: { nickname: profileDto.nickname } })
+      return {
+         message: 'nickname is valid',
+      }
+   }
 
-        if (profile) {
-            throw new HttpException('Никнейм уже занят', HttpStatus.CONFLICT)
-        }
+   async updateProfile(dto: CreateProfileDto, id: string) {
+      //не нужно обращаться к БД если поля не изменились
+      if (!this.isValidDto<CreateProfileDto>(dto)) {
+         throw new HttpException('Нет данных для обновления', HttpStatus.BAD_REQUEST)
+      }
 
-        return {
-            message: 'nickname is valid',
-        }
-    }
+      if (!id || isNaN(Number(id))) {
+         throw new HttpException('Невалидныйы ID профиля', HttpStatus.BAD_REQUEST)
+      }
 
+      const currentProfile = await this.getProfileById(id)
 
-    async updateProfile(dto: CreateProfileDto, profileId: string) {
-        //не нужно обращаться к БД если поля не изменились
+      if (!currentProfile) {
+         throw new HttpException('Такого профиля нет в БД', HttpStatus.BAD_REQUEST)
+      }
 
-        const profile = await this.prisma.profile.update({ where: { userId: Number(profileId) }, data: { ...dto }, include: { user: { select: { email: true } } } })
+      if (!this.hasChangesField(currentProfile, dto)) {
+         throw new HttpException('Нет изменений', HttpStatus.NOT_MODIFIED)
+      }
 
-        return profile
-    }
+      const updatedProfile = await this.prisma.profile.update({
+         where: { userId: Number(id) },
+         data: { ...dto },
+         include: { user: { select: { email: true } } },
+      })
 
-    async getProfileByUserId(id: string) {
-        const profile = await this.prisma.profile.findUnique({ where: { userId: Number(id) }, include: { user: { select: { email: true } } } })
+      return updatedProfile
+   }
 
-        if (!profile) {
-            throw new HttpException('Такого профиля нет в БД', HttpStatus.BAD_REQUEST)
-        }
+   async getProfileById(id: string) {
+      const profile = await this.prisma.profile.findUnique({
+         where: { userId: Number(id) },
+         include: { user: { select: { email: true } } },
+      })
 
-        return profile
-    }
+      if (!profile) {
+         throw new HttpException('Такого профиля нет в БД', HttpStatus.BAD_REQUEST)
+      }
 
+      return profile
+   }
 
+   private isValidDto<T>(dto: T) {
+      if (!dto || Object.keys(dto).length === 0) {
+         return false
+      }
+   }
+
+   private hasChangesField(currentProfile: Profile, updates: CreateProfileDto) {
+      return Object.keys(currentProfile).some(
+         (key) => updates[key as keyof CreateProfileDto] !== currentProfile[key as keyof Profile]
+      )
+   }
 }
