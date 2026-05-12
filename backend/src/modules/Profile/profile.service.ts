@@ -22,7 +22,6 @@ export class ProfileService {
    }
 
    async updateProfile(dto: CreateProfileDto, id: string) {
-      //не нужно обращаться к БД если поля не изменились
       if (!this.isValidDto<CreateProfileDto>(dto)) {
          throw new HttpException('Нет данных для обновления', HttpStatus.BAD_REQUEST)
       }

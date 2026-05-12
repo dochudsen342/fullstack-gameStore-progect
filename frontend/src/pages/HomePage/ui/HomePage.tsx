@@ -16,6 +16,8 @@ const HomePage = ({ className }: HomePageProps) => {
     return (
         <div>
             <GameSlider />
+            <p>ИНН:</p>
+            <span>342101634882</span>
         </div>
     )
 }
