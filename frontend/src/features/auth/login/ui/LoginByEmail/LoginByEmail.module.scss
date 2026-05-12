@@ -1,6 +1,9 @@
 .register-container {
-    height: 10vh;
-    font-family: 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    font-family: "Segoe UI", Roboto, sans-serif;
 }
 
 .register-card {
